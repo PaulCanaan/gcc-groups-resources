@@ -1,0 +1,10 @@
+---
+import type { Resource } from '../lib/resource';
+interface Props { resource: Resource; featured?: boolean; }
+const { resource, featured = false } = Astro.props;
+---
+<div class:list={['resource-cover', `cover-${resource.category}`, { 'cover-featured': featured }]} aria-hidden="true">
+  <div class="cover-top"><span>GOLDEN CITY</span><span>GROUPS</span></div>
+  <div class="cover-title">{resource.title}</div>
+  <div class="cover-bottom"><span>{resource.scripture || resource.kind}</span><span>↗</span></div>
+</div>

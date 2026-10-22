@@ -1,0 +1,7 @@
+.git/
+node_modules/
+.env*
+!.env.example
+studio-dist/
+.sanity/
+tests/

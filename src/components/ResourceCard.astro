@@ -1,0 +1,18 @@
+---
+import Arrow from './Arrow.astro';
+import ResourceCover from './ResourceCover.astro';
+import type { Resource } from '../lib/resource';
+interface Props { resource: Resource; }
+const { resource } = Astro.props;
+---
+<article class="resource-card">
+  <a href={`/resources/${resource.slug}/`} class="card-link">
+    <ResourceCover resource={resource} />
+    <div class="card-copy">
+      <div class="eyebrow">{resource.kind}</div>
+      <h3>{resource.title}</h3>
+      <p>{resource.summary}</p>
+      <span class="card-action">{resource.kind === 'External resource' ? 'Explore resource' : 'Read resource'} <Arrow /></span>
+    </div>
+  </a>
+</article>

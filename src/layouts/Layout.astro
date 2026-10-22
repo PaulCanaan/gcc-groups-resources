@@ -1,0 +1,43 @@
+---
+import Arrow from '../components/Arrow.astro';
+import { isDemo } from '../lib/resources';
+import '../styles/global.css';
+interface Props { title?: string; description?: string; }
+const { title = 'Resources for life together', description = 'Resources for Scripture, prayer, community, and growing as a group leader at Golden City Church.' } = Astro.props;
+const noIndex = isDemo || process.env.VERCEL_ENV === 'preview';
+const canonical = Astro.site && !noIndex ? new URL(Astro.url.pathname, Astro.site) : undefined;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · Golden City Groups</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#faf9f6" />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/roboto.ttf" as="font" type="font/ttf" crossorigin />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    {isDemo && <div class="preview-notice">Design preview <span aria-hidden="true">·</span> Example resources; ministry editions are still being prepared.</div>}
+    <header class="site-header wrap">
+      <a class="brand" href="/" aria-label="Golden City Groups resources home"><img src="/groups-logo.png" width="1072" height="184" alt="Groups" /><span>GOLDEN CITY CHURCH</span></a>
+      <nav aria-label="Main navigation">
+        <a href="/" aria-current={Astro.url.pathname === '/' ? 'page' : undefined}>Resources</a>
+        <a href="https://www.goldencity.church/groups/fall2026" class="nav-group">Find a Group <Arrow diagonal /></a>
+        <a href="https://www.goldencity.church/" class="church-link">Back to church <Arrow diagonal /></a>
+      </nav>
+    </header>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <div><a class="footer-name" href="https://www.goldencity.church/">GOLDEN CITY CHURCH</a><p>Following Jesus. Growing together.</p></div>
+        <nav aria-label="Footer navigation"><a href="https://www.goldencity.church/groups">About Groups</a><a href="https://www.goldencity.church/contact">Get in touch <Arrow diagonal /></a></nav>
+        <span class="copyright">© {new Date().getFullYear()} Golden City Church</span>
+      </div>
+    </footer>
+  </body>
+</html>
