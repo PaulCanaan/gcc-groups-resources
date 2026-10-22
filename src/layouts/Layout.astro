@@ -1,5 +1,6 @@
 ---
 import Arrow from '../components/Arrow.astro';
+import PdfPreview from '../components/PdfPreview.astro';
 import { isDemo } from '../lib/resources';
 import '../styles/global.css';
 interface Props { title?: string; description?: string; }
@@ -39,5 +40,6 @@ const canonical = Astro.site && !noIndex ? new URL(Astro.url.pathname, Astro.sit
         <span class="copyright">© {new Date().getFullYear()} Golden City Church</span>
       </div>
     </footer>
+    <PdfPreview />
   </body>
 </html>

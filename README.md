@@ -2,7 +2,7 @@
 
 Astro static resource library with a standalone Sanity Studio and Vercel configuration. The site follows Golden City Church's Roboto, grayscale, and restrained gold visual language. It lives in a separate public Git repository inside the ministry workspace.
 
-Live library: [GCC Resources](https://gcc-groups-resources.vercel.app). Published October 22, 2026 with eight PDFs approved by Paul: three Weekly Recaps (October 4/11/18), Galatians Sessions 1–2 for both Collectives, and the public GCC Group Leader Agreement. The landing page shows three collapsed categories: City Groups Resources, Collectives Resources, and Other Resources. Native disclosures reveal concise cards with **View Full Resource** and **Download Printable PDF** actions; Other Resources also houses future Group Leader Collaboration materials. The favicon uses the official GCC skyline logo from the church’s public site. The Agreement public edition omits private pastoral phone numbers and keeps completed acknowledgements private. Legacy CoJourner category values are grouped under Other Resources; design samples are absent from the live library.
+Live library: [GCC Resources](https://gcc-groups-resources.vercel.app). Published October 22, 2026 with eight PDFs approved by Paul: three Weekly Recaps (October 4/11/18), Galatians Sessions 1–2 for both Collectives, and the public GCC Group Leader Agreement. The landing page shows three collapsed categories: City Groups Resources, Collectives Resources, and Other Resources. Native disclosures reveal concise cards with **View Full Resource** and **Preview Printable PDF** actions; Other Resources also houses future Group Leader Collaboration materials. The favicon uses the official GCC skyline logo from the church’s public site. The Agreement public edition omits private pastoral phone numbers and keeps completed acknowledgements private. Legacy CoJourner category values are grouped under Other Resources; design samples are absent from the live library.
 
 ## Local preview
 
@@ -57,7 +57,11 @@ The planned church entry is `/groups/resources`, with the initial architecture r
 
 Each published resource has a stable page at `/resources/<slug>/`, using the existing dated Weekly Recap slugs and distinct Men’s/Women’s Galatians slugs. Cards and page headings link internally to these pages. The current public origin is `https://gcc-groups-resources.vercel.app`; the native Squarespace church-domain entry remains deferred until account access is available. Publishing this build does not configure `goldencity.church/groups/resources/<slug>`.
 
-Printable PDF actions use Sanity’s documented `dl=<slug>.pdf` query parameter to request an attachment with a readable filename. The same approved assets are preserved. A CMS body update does not replace or regenerate the PDF; keep the two editions aligned during publication review.
+Cards use a warm parchment **View Full Resource** button and a **Preview Printable PDF** action. The preview opens a small dialog in the current page, with page navigation, keyboard closing, and a separate download choice. It does not open another tab or start a download. The PDF viewer loads on demand using PDF.js; the full resource pages remain available without JavaScript.
+
+During each build, approved PDF assets are copied byte-for-byte to static `/pdfs/<slug>.pdf` routes so the browser can render them from the same origin. A missing or invalid PDF fails the build. Unpublishing a resource removes its static page and PDF on the next successful rebuild. No PDF source files are committed to this repository.
+
+The dialog’s explicit download action uses Sanity’s documented `dl=<slug>.pdf` query parameter to request an attachment with a readable filename. The same approved assets are preserved. A CMS body update does not replace or regenerate the PDF; keep the two editions aligned during publication review.
 
 ## Checks and recovery
 

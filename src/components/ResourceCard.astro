@@ -1,10 +1,10 @@
 ---
 import Arrow from './Arrow.astro';
-import { printablePdfUrl, type Resource } from '../lib/resource';
+import type { Resource } from '../lib/resource';
+import PdfPreviewButton from './PdfPreviewButton.astro';
 interface Props { resource: Resource; }
 const { resource } = Astro.props;
 const pageUrl = `/resources/${resource.slug}/`;
-const pdfUrl = printablePdfUrl(resource);
 ---
 <article class="resource-card">
   <div class="card-copy">
@@ -12,7 +12,7 @@ const pdfUrl = printablePdfUrl(resource);
     <p>{resource.summary}</p>
     <div class="card-actions">
       <a class="card-action" href={pageUrl}><span>View Full Resource<span class="sr-only"> — {resource.title}</span></span><Arrow /></a>
-      {pdfUrl && <a class="card-action" href={pdfUrl} download><span>Download Printable PDF<span class="sr-only"> — {resource.title}</span></span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" /></svg></a>}
+      {resource.fileUrl && <PdfPreviewButton resource={resource} class="card-action" />}
     </div>
   </div>
 </article>
