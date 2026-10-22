@@ -16,5 +16,6 @@ test('CMS boundary rejects uncleared documents, unsafe destinations, and conflic
   assert.throws(() => parseResources([{ ...first, slug: '../draft' }]));
   assert.throws(() => parseResources([first, first]), /Duplicate resource slug/);
   assert.equal(parseResources(samples).length, 5);
+  assert.equal(parseResources([{ ...first, category: 'cojourner' }])[0].category, 'others');
   assert.equal(parseResources([{ ...first, scripture: null, series: null, session: null, fileUrl: null, externalUrl: null }]).length, 1);
 });

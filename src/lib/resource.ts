@@ -1,10 +1,9 @@
 import { z } from 'zod';
 
 export const categories = [
-  { id: 'city-groups', title: 'City Groups Resources', description: 'Make room for shared life, Scripture, and prayer.' },
-  { id: 'collectives', title: 'Collective Resources', description: 'Read Scripture and encourage one another in faith.' },
-  { id: 'cojourner', title: 'CoJourner', description: 'Resources for growing alongside others as a leader.' },
-  { id: 'others', title: 'Other Resources', description: 'Bible study tools and training for the way ahead.' },
+  { id: 'city-groups', title: 'City Groups Resources', description: 'Weekly Recaps for Scripture, conversation, and prayer.' },
+  { id: 'collectives', title: 'Collectives Resources', description: 'Galatians Study handouts for Men’s and Women’s Collectives.' },
+  { id: 'others', title: 'Other Resources', description: 'Leader agreements, training, and shared tools.' },
 ] as const;
 
 const secureUrl = z.url().refine((url) => new URL(url).protocol === 'https:', 'Use an HTTPS URL.');
@@ -12,7 +11,7 @@ export const resourceSchema = z.object({
   title: z.string().trim().min(1),
   slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
   summary: z.string().trim().min(1),
-  category: z.enum(['city-groups', 'collectives', 'cojourner', 'others']),
+  category: z.enum(['city-groups', 'collectives', 'cojourner', 'others']).transform(category => category === 'cojourner' ? 'others' : category),
   date: z.iso.date(),
   kind: z.enum(['Reading guide', 'Discussion guide', 'Leader training', 'Leader agreement', 'External resource']),
   audience: z.enum(['everyone', 'leaders']),

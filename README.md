@@ -2,7 +2,7 @@
 
 Astro static resource library with a standalone Sanity Studio and Vercel configuration. The site follows Golden City Church's Roboto, grayscale, and restrained gold visual language. It lives in a separate public Git repository inside the ministry workspace.
 
-Live library: [GCC Resources](https://gcc-groups-resources.vercel.app). Published October 22, 2026 with eight PDFs approved by Paul: three Weekly Recaps (October 4/11/18), Galatians Sessions 1–2 for both Collectives, and the public GCC Group Leader Agreement. Resource cards open PDFs directly. The Agreement public edition omits private pastoral phone numbers and keeps completed acknowledgements private. CoJourner and design samples are absent from the live library.
+Live library: [GCC Resources](https://gcc-groups-resources.vercel.app). Published October 22, 2026 with eight PDFs approved by Paul: three Weekly Recaps (October 4/11/18), Galatians Sessions 1–2 for both Collectives, and the public GCC Group Leader Agreement. The landing page shows three collapsed categories: City Groups Resources, Collectives Resources, and Other Resources. Native disclosures reveal concise cards that open PDFs directly; Other Resources also houses future Group Leader Collaboration materials. The favicon uses the official GCC skyline logo from the church’s public site. The Agreement public edition omits private pastoral phone numbers and keeps completed acknowledgements private. Legacy CoJourner category values are grouped under Other Resources; design samples are absent from the live library.
 
 ## Local preview
 
