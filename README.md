@@ -2,7 +2,7 @@
 
 Astro static resource library with a standalone Sanity Studio and Vercel configuration. The site follows Golden City Church's Roboto, grayscale, and restrained gold visual language. It lives in a separate public Git repository inside the ministry workspace.
 
-Design preview: [Vercel](https://gcc-groups-resources-1vmherbm4-paul-canaan.vercel.app) (Vercel sign-in required). This is a Preview deployment, not the church’s production resources site.
+Live library: [GCC Resources](https://gcc-groups-resources.vercel.app). Published October 22, 2026 with eight PDFs approved by Paul: three Weekly Recaps (October 4/11/18), Galatians Sessions 1–2 for both Collectives, and the public GCC Group Leader Agreement. Resource cards open PDFs directly. The Agreement public edition omits private pastoral phone numbers and keeps completed acknowledgements private. CoJourner and design samples are absent from the live library.
 
 ## Local preview
 
@@ -40,18 +40,18 @@ Configure these environment variables for the intended deployment environments:
 | Variable | Value |
 |---|---|
 | `CONTENT_SOURCE` | `sanity` for production; explicit `demo` is allowed for design previews only |
-| `SANITY_STUDIO_PROJECT_ID` | Actual Sanity project ID |
-| `SANITY_STUDIO_DATASET` | Actual dataset name |
+| `SANITY_STUDIO_PROJECT_ID` | `1consdwv` |
+| `SANITY_STUDIO_DATASET` | `production` |
 | `SANITY_READ_TOKEN` | Private-dataset read token, only if required |
-| `SITE_URL` | Confirmed resource domain origin |
+| `SITE_URL` | `https://gcc-groups-resources.vercel.app` until the church subdomain is connected |
 
 Vercel [classifies a new project’s first deployment as production](https://vercel.com/docs/cli/deploy#prod), even with the preview flag. The first attempt here failed with the sample-content guard enabled and no production release was made. Keeping that failed attempt recorded allowed the next explicit preview attempt to be classified as Preview. Do not weaken that guard to bootstrap a design preview.
 
-Keep credentials and Deploy Hook URLs in provider settings or ignored local environment files. Never commit them. Review the deployment before adding a production domain or main-site redirect. Source is pushed to GitHub; automatic Git deployment is not connected yet.
+Keep credentials and Deploy Hook URLs in provider settings or ignored local environment files. Never commit them. Review the deployment before connecting the church subdomain or main-site redirect. Source is linked to GitHub. A push to `main` now creates a production deployment; other code changes use Vercel previews. The Git-triggered `d981d90` deployment verified this connection.
 
-For content updates, configure a Sanity webhook to a Vercel Deploy Hook. Trigger on published document creation, update, unpublishing, and deletion. Draft edits should not trigger production builds. Test both adding and removing a resource: an older static page remains until a successful rebuild replaces it. A failed build leaves the previous successful deployment live and requires follow-up.
+Content changes currently require a deliberate Vercel rebuild. To automate that later, configure a Sanity webhook to a Vercel Deploy Hook. Trigger on published document creation, update, unpublishing, and deletion. Draft edits should not trigger production builds. Test both adding and removing a resource: an older static page remains until a successful rebuild replaces it. A failed build leaves the previous successful deployment live and requires follow-up.
 
-The planned church entry is `/groups/resources`, with the initial architecture recommending a Squarespace redirect to an independent resource subdomain. No domain, redirect, or main-site DNS changes are included in this build. If preserving the exact original address becomes mandatory, design and verify the proxy separately.
+The planned church entry is `/groups/resources`, with the initial architecture recommending a Squarespace redirect to an independent resource subdomain. The Vercel production URL is live; church-domain DNS and the Squarespace redirect remain pending. If preserving the exact original address becomes mandatory, design and verify the proxy separately.
 
 ## Checks and recovery
 
