@@ -7,16 +7,36 @@ const all = await resources;
 ---
 <Layout>
   <section class="hero wrap" aria-labelledby="hero-heading">
-    <p class="eyebrow breadcrumb"><a href="https://www.goldencity.church/groups">Golden City Groups</a><span aria-hidden="true">/</span> Resource library</p>
-    <h1 id="hero-heading">Resources for life <span>together.</span></h1>
-    <p class="hero-description">Find a resource for your next gathering. Choose a category below to explore.</p>
+    <div class="hero-copy">
+      <p class="eyebrow breadcrumb"><a href="https://www.goldencity.church/groups">Golden City Groups</a><span aria-hidden="true">/</span> Resource library</p>
+      <h1 id="hero-heading">Resources for life <span>together.</span></h1>
+      <p class="hero-description">Find a resource for your next gathering. Choose a category below to explore.</p>
+    </div>
+    <svg class="hero-illustration" viewBox="0 0 260 180" fill="none" aria-hidden="true" focusable="false">
+      <circle cx="145" cy="88" r="73" fill="#f0ebdf" />
+      <circle cx="145" cy="88" r="61" stroke="#d6c6a6" stroke-dasharray="2 7" />
+      <path d="M94 79a51 51 0 0 1 102 0M108 79a37 37 0 0 1 74 0" stroke="#b9a16c" stroke-width="1.3" />
+      <path d="M145 15V6M207 36l7-7M83 36l-7-7" stroke="#b9a16c" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M63 94c28-7 53-1 75 13v51c-22-14-47-20-75-13V94Z" fill="#fffdf8" />
+      <path d="M138 107c22-14 47-20 75-13v51c-28-7-53-1-75 13v-51Z" fill="#e4e7df" />
+      <path d="M63 94c28-7 53-1 75 13 22-14 47-20 75-13v51c-28-7-53-1-75 13-22-14-47-20-75-13V94Z" stroke="#65705d" stroke-width="1.5" stroke-linejoin="round" />
+      <path d="M138 107v51M77 108c16-2 31 2 46 9m-46 3c16-2 31 2 46 9m-46 3c16-2 31 2 46 9m30-24c15-7 30-11 46-9m-46 21c15-7 30-11 46-9m-46 21c15-7 30-11 46-9" stroke="#a4ab98" stroke-width="1.2" stroke-linecap="round" />
+      <path d="M41 136c-10-20-12-37-7-55m2 24c-13-1-19-9-18-19 12 2 18 9 18 19Zm0 15c8-10 17-11 24-6-7 10-15 13-24 6Z" stroke="#a5ab94" stroke-width="1.4" stroke-linejoin="round" />
+      <path d="M48 164h180" stroke="#d6c6a6" stroke-width="1.2" stroke-linecap="round" />
+    </svg>
   </section>
   <section id="library" class="library wrap" aria-label="Resource categories">
-    {categories.map((category, index) => {
+    {categories.map(category => {
       const items = all.filter(resource => resource.category === category.id);
       return <details class="category-section" id={category.id}>
         <summary class="category-heading">
-          <span class="section-number" aria-hidden="true">0{index + 1}</span>
+          <span class="category-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+              {category.id === 'city-groups' && <><path d="m3 11 9-7 9 7M5 10v10h14V10M9 20v-6h6v6" /><path d="M9 8h.01M15 8h.01" /></>}
+              {category.id === 'collectives' && <><path d="M12 6C9 4 5 4 2 5v14c3-1 7-1 10 1 3-2 7-2 10-1V5c-3-1-7-1-10 1Zm0 0v14" /><path d="M5 9h3M5 12h3m8-3h3m-3 3h3" /></>}
+              {category.id === 'others' && <><path d="M8 3h8l4 4v13H8V3Z" /><path d="M16 3v5h4M4 7v16h12M11 12h6m-6 4h6" /></>}
+            </svg>
+          </span>
           <div class="category-copy"><h2>{category.title}</h2><p>{category.description}</p></div>
           <span class="category-count">{items.length} {items.length === 1 ? 'resource' : 'resources'}</span>
           <span class="category-toggle" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6" /></svg></span>
