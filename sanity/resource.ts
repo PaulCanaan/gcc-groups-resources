@@ -15,7 +15,7 @@ export const resource = defineType({
     defineField({ name: 'scripture', type: 'string' }),
     defineField({ name: 'series', type: 'string' }),
     defineField({ name: 'session', type: 'number', validation: rule => rule.integer().positive() }),
-    defineField({ name: 'body', title: 'Resource text', type: 'text', rows: 12, description: 'Separate paragraphs with a blank line. Plain text keeps resources readable and easy to print.', validation: rule => rule.required() }),
+    defineField({ name: 'body', title: 'Full resource (Markdown)', type: 'text', rows: 12, description: 'Use Markdown headings starting at ##, numbered questions, lists, bold, and italics. The page title is added automatically; omit YAML frontmatter and print-layout comments. Include the full approved public resource and any required Scripture credit. Keep internal notes and personal information out.', validation: rule => rule.required() }),
     defineField({ name: 'file', title: 'Public download', type: 'file', options: { accept: '.pdf' }, description: 'Upload only an edition cleared for public distribution. Files are public on the asset CDN.' }),
     defineField({ name: 'externalUrl', title: 'External source', type: 'url', validation: rule => rule.uri({ scheme: ['https'] }) }),
     defineField({ name: 'publicDistribution', title: 'Cleared for public distribution', type: 'boolean', initialValue: false, description: 'Confirm review, privacy, and any required permission before publishing. A website filter does not make CMS content private.' }),

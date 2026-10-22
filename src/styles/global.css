@@ -343,9 +343,6 @@ a:hover {
 }
 .resource-card {
   min-width:0;
-}
-.card-link {
-  display:block;
   height:100%;
   border:1px solid var(--line);
   background:var(--white);
@@ -354,7 +351,7 @@ a:hover {
   overflow:hidden;
   transition:border-color .2s,box-shadow .2s;
 }
-.card-link:hover {
+.resource-card:hover {
   color:var(--ink);
   border-color:#b9ab8c;
   box-shadow:0 4px 16px #1c1c1c08;
@@ -414,6 +411,9 @@ a:hover {
 }
 .card-copy {
   padding:24px;
+  display:flex;
+  flex-direction:column;
+  height:100%;
 }
 .card-copy h3 {
   font-size:22px;
@@ -426,18 +426,39 @@ a:hover {
   margin-top:12px;
   line-height:1.7;
 }
+.card-actions {
+  display:grid;
+  gap:10px;
+  margin-top:auto;
+  padding-top:24px;
+}
 .card-action {
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:12px;
+  padding:10px 12px;
+  min-height:44px;
+  border:1px solid var(--line);
+  border-radius:3px;
   font-size:12px;
-  margin-top:25px;
-  padding-top:17px;
-  border-top:1px solid var(--line);
+  line-height:1.5;
+}
+.card-action:first-child {
+  background:var(--ink);
+  border-color:var(--ink);
+  color:var(--white);
+}
+.card-action:hover {
+  background:var(--warm);
+  color:var(--ink);
+}
+.card-action:first-child:hover {
+  background:#3c3a34;
+  color:var(--white);
 }
 .card-action svg {
   width:17px;
-  color:var(--gold-text);
 }
 .site-footer {
   border-top:1px solid var(--line);
@@ -529,8 +550,52 @@ a:hover {
   margin-top:33px;
   max-width:66ch;
 }
-.article-body p+p {
-  margin-top:23px;
+.article-body>*+* {
+  margin-top:22px;
+}
+.article-body h2 {
+  font-size:28px;
+  margin-top:42px;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+  letter-spacing:-.025em;
+}
+.article-body h3 {
+  font-size:22px;
+  margin-top:32px;
+  letter-spacing:-.02em;
+  line-height:1.25;
+}
+.article-body>h2:first-child {
+  margin-top:0;
+  padding-top:0;
+  border:0;
+}
+.article-body ul,.article-body ol {
+  padding-left:1.5em;
+}
+.article-body li+li {
+  margin-top:12px;
+}
+.article-body li::marker {
+  color:var(--gold-text);
+  font-weight:500;
+}
+.article-body strong {
+  font-weight:600;
+}
+.article-body a {
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.article-body blockquote {
+  margin-inline:0;
+  padding:18px 24px;
+  border-left:2px solid var(--gold);
+  background:var(--warm);
+}
+.article-body blockquote>*+* {
+  margin-top:16px;
 }
 .article-actions {
   display:flex;

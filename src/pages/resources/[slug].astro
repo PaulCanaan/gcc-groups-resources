@@ -3,7 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import Arrow from '../../components/Arrow.astro';
 import ResourceCover from '../../components/ResourceCover.astro';
 import { resources, isDemo } from '../../lib/resources';
-import { categories, formatDate } from '../../lib/resource';
+import { categories, formatDate, printablePdfUrl } from '../../lib/resource';
+import { renderResourceBody } from '../../lib/markdown';
 import type { Resource } from '../../lib/resource';
 export async function getStaticPaths() {
   return (await resources).map(resource => ({ params: { slug: resource.slug }, props: { resource } }));
@@ -21,12 +22,12 @@ const category = categories.find(c => c.id === resource.category)!;
         <h1>{resource.title}</h1><p class="article-summary">{resource.summary}</p>
         <div class="article-meta"><span>{resource.audience === 'leaders' ? 'For group leaders' : 'For everyone'}</span><span aria-hidden="true">·</span><time datetime={resource.date}>{formatDate(resource.date)}</time>{resource.series && <span>{resource.series}{resource.session && ` · Session ${resource.session}`}</span>}</div>
         {isDemo && <p class="sample-label">Sample resource for design review. This is not a published ministry edition.</p>}
-        <div class="article-body">{resource.body.split(/\n\s*\n/).filter(Boolean).map(paragraph => <p>{paragraph}</p>)}</div>
         <div class="article-actions">
-          {resource.fileUrl && <a class="button" href={resource.fileUrl} target="_blank" rel="noopener noreferrer">Open PDF <Arrow diagonal /><span class="sr-only"> (opens in a new tab)</span></a>}
+          {resource.fileUrl && <a class="button" href={printablePdfUrl(resource)} download>Download Printable PDF <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" /></svg></a>}
           {resource.externalUrl && <a class="button" href={resource.externalUrl} target="_blank" rel="noopener noreferrer">Visit source <Arrow diagonal /><span class="sr-only"> (opens in a new tab)</span></a>}
           {!resource.fileUrl && <button type="button" class="print-button" data-print hidden>Print this guide <span aria-hidden="true">↗</span></button>}
         </div>
+        <div class="article-body" set:html={renderResourceBody(resource.body)} />
         <div class="article-close"><p class="eyebrow">Take it with you</p><p>Read slowly. Make room for conversation.<br />Ask God to shape the way you live.</p></div>
       </article>
       <aside class="resource-aside" aria-label="Resource collection"><ResourceCover resource={resource} featured /><p>A resource from<br /><strong>Golden City Groups</strong></p><a class="text-link" href="/">Browse all resources <Arrow /></a></aside>

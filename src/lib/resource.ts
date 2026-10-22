@@ -51,3 +51,10 @@ export const resourceQuery = `*[_type == "resource" && publicDistribution == tru
 export function formatDate(date: string) {
   return new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${date}T12:00:00Z`));
 }
+
+export function printablePdfUrl(resource: Pick<Resource, 'fileUrl' | 'slug'>) {
+  if (!resource.fileUrl) return undefined;
+  const url = new URL(resource.fileUrl);
+  if (url.hostname === 'cdn.sanity.io') url.searchParams.set('dl', `${resource.slug}.pdf`);
+  return url.href;
+}

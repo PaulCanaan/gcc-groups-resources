@@ -2,7 +2,7 @@
 
 Astro static resource library with a standalone Sanity Studio and Vercel configuration. The site follows Golden City Church's Roboto, grayscale, and restrained gold visual language. It lives in a separate public Git repository inside the ministry workspace.
 
-Live library: [GCC Resources](https://gcc-groups-resources.vercel.app). Published October 22, 2026 with eight PDFs approved by Paul: three Weekly Recaps (October 4/11/18), Galatians Sessions 1–2 for both Collectives, and the public GCC Group Leader Agreement. The landing page shows three collapsed categories: City Groups Resources, Collectives Resources, and Other Resources. Native disclosures reveal concise cards that open PDFs directly; Other Resources also houses future Group Leader Collaboration materials. The favicon uses the official GCC skyline logo from the church’s public site. The Agreement public edition omits private pastoral phone numbers and keeps completed acknowledgements private. Legacy CoJourner category values are grouped under Other Resources; design samples are absent from the live library.
+Live library: [GCC Resources](https://gcc-groups-resources.vercel.app). Published October 22, 2026 with eight PDFs approved by Paul: three Weekly Recaps (October 4/11/18), Galatians Sessions 1–2 for both Collectives, and the public GCC Group Leader Agreement. The landing page shows three collapsed categories: City Groups Resources, Collectives Resources, and Other Resources. Native disclosures reveal concise cards with **View Full Resource** and **Download Printable PDF** actions; Other Resources also houses future Group Leader Collaboration materials. The favicon uses the official GCC skyline logo from the church’s public site. The Agreement public edition omits private pastoral phone numbers and keeps completed acknowledgements private. Legacy CoJourner category values are grouped under Other Resources; design samples are absent from the live library.
 
 ## Local preview
 
@@ -25,11 +25,11 @@ The Sanity plugin was not available in the connected catalog when this project w
 1. Sign in to the GCC Groups Resources project (`1consdwv`, dataset `production`) with the account that claimed it.
 2. Copy `.env.example` to `.env.local`. Set `SANITY_STUDIO_PROJECT_ID`, `SANITY_STUDIO_DATASET`, and `CONTENT_SOURCE=sanity`. Add `SANITY_READ_TOKEN` only for a private dataset, using build-time read access.
 3. Run `npm run studio` to open the editor at `http://localhost:3333`. The schema is in `sanity/resource.ts`.
-4. Author a public-safe resource, generate its slug, and mark it cleared for public distribution after the required review. Publish it, then run the web build again.
+4. Author a public-safe resource, paste the full approved Markdown into **Full resource (Markdown)**, generate its slug, and mark it cleared for public distribution after the required review. Publish it, then run the web build again.
 
 A leader audience does not imply private content: leadership training may be publicly available, including Belonging, Beholding, Becoming. Truly confidential materials stay outside this CMS and its asset store. Ordinary Sanity dataset attachments have public CDN URLs even on a private dataset.
 
-Only published resources with `publicDistribution=true` enter a web build. CMS query or validation failures fail the build instead of silently replacing content with examples. Slugs must be unique, and external/download destinations must use HTTPS. Resource body text is rendered as plain paragraphs rather than executable HTML.
+Only published resources with `publicDistribution=true` enter a web build. CMS query or validation failures fail the build instead of silently replacing content with examples. Slugs must be unique, and external/download destinations must use HTTPS. The body field contains the full approved resource in CommonMark Markdown. `micromark` renders headings, numbered questions, lists, bold, and italics at build time, with embedded HTML and unsafe URL protocols disabled. Start body sections at `##`; omit the repeated title, YAML frontmatter, print-layout comments, internal references, and private notes. Preserve Scripture credits. The public Agreement web edition excludes internal governance notes and private contacts, just as its PDF does.
 
 ## Vercel setup
 
@@ -53,9 +53,15 @@ Content changes currently require a deliberate Vercel rebuild. To automate that 
 
 The planned church entry is `/groups/resources`, with the initial architecture recommending a Squarespace redirect to an independent resource subdomain. The Vercel production URL is live; church-domain DNS and the Squarespace redirect remain pending. If preserving the exact original address becomes mandatory, design and verify the proxy separately.
 
+## Resource pages and downloads
+
+Each published resource has a stable page at `/resources/<slug>/`, using the existing dated Weekly Recap slugs and distinct Men’s/Women’s Galatians slugs. Cards and page headings link internally to these pages. The current public origin is `https://gcc-groups-resources.vercel.app`; the native Squarespace church-domain entry remains deferred until account access is available. Publishing this build does not configure `goldencity.church/groups/resources/<slug>`.
+
+Printable PDF actions use Sanity’s documented `dl=<slug>.pdf` query parameter to request an attachment with a readable filename. The same approved assets are preserved. A CMS body update does not replace or regenerate the PDF; keep the two editions aligned during publication review.
+
 ## Checks and recovery
 
-`npm test` protects publication boundaries, safe destinations, and unique routes. `npm run check` checks Astro and TypeScript. `npm run build` generates the static directory, resource pages, 404, and robots file. Verify browser navigation, print layout, phone widths, keyboard focus, actual PDFs, and CMS publish/unpublish before production use.
+`npm test` protects publication boundaries, safe destinations, unique routes, safe Markdown rendering, and named PDF download URLs. `npm run check` checks Astro and TypeScript. `npm run build` generates the static directory, resource pages, 404, and robots file. Verify browser navigation, print layout, phone widths, keyboard focus, actual PDFs, and CMS publish/unpublish before production use.
 
 Code rollback uses the previous known-good commit/deployment. Resource removal requires changing Sanity and rebuilding; removing a link does not revoke a previously public attachment URL. Keep backups and CMS exports in an appropriate controlled location rather than in this public code repository.
 
