@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
 export const categories = [
-  { id: 'city-groups', title: 'City Groups', description: 'Make room for shared life, Scripture, and prayer.' },
-  { id: 'collectives', title: 'Collectives', description: 'Read Scripture and encourage one another in faith.' },
+  { id: 'city-groups', title: 'City Groups Resources', description: 'Make room for shared life, Scripture, and prayer.' },
+  { id: 'collectives', title: 'Collective Resources', description: 'Read Scripture and encourage one another in faith.' },
   { id: 'cojourner', title: 'CoJourner', description: 'Resources for growing alongside others as a leader.' },
-  { id: 'others', title: 'More resources', description: 'Bible study tools and training for the way ahead.' },
+  { id: 'others', title: 'Other Resources', description: 'Bible study tools and training for the way ahead.' },
 ] as const;
 
 const secureUrl = z.url().refine((url) => new URL(url).protocol === 'https:', 'Use an HTTPS URL.');
@@ -14,7 +14,7 @@ export const resourceSchema = z.object({
   summary: z.string().trim().min(1),
   category: z.enum(['city-groups', 'collectives', 'cojourner', 'others']),
   date: z.iso.date(),
-  kind: z.enum(['Reading guide', 'Discussion guide', 'Leader training', 'External resource']),
+  kind: z.enum(['Reading guide', 'Discussion guide', 'Leader training', 'Leader agreement', 'External resource']),
   audience: z.enum(['everyone', 'leaders']),
   scripture: z.string().nullish(),
   series: z.string().nullish(),

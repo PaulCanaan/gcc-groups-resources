@@ -25,7 +25,7 @@ const category = categories.find(c => c.id === resource.category)!;
         <div class="article-actions">
           {resource.fileUrl && <a class="button" href={resource.fileUrl} target="_blank" rel="noopener noreferrer">Open PDF <Arrow diagonal /><span class="sr-only"> (opens in a new tab)</span></a>}
           {resource.externalUrl && <a class="button" href={resource.externalUrl} target="_blank" rel="noopener noreferrer">Visit source <Arrow diagonal /><span class="sr-only"> (opens in a new tab)</span></a>}
-          <button type="button" class="print-button" data-print hidden>Print this guide <span aria-hidden="true">↗</span></button>
+          {!resource.fileUrl && <button type="button" class="print-button" data-print hidden>Print this guide <span aria-hidden="true">↗</span></button>}
         </div>
         <div class="article-close"><p class="eyebrow">Take it with you</p><p>Read slowly. Make room for conversation.<br />Ask God to shape the way you live.</p></div>
       </article>

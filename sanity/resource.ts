@@ -10,7 +10,7 @@ export const resource = defineType({
     defineField({ name: 'summary', type: 'text', rows: 3, validation: rule => rule.required().max(240) }),
     defineField({ name: 'category', type: 'string', options: { list: categories.map(c => ({ title: c.title, value: c.id })) }, validation: rule => rule.required() }),
     defineField({ name: 'date', title: 'Resource date', type: 'date', validation: rule => rule.required() }),
-    defineField({ name: 'kind', title: 'Resource type', type: 'string', options: { list: ['Reading guide', 'Discussion guide', 'Leader training', 'External resource'] }, validation: rule => rule.required() }),
+    defineField({ name: 'kind', title: 'Resource type', type: 'string', options: { list: ['Reading guide', 'Discussion guide', 'Leader training', 'Leader agreement', 'External resource'] }, validation: rule => rule.required() }),
     defineField({ name: 'audience', type: 'string', initialValue: 'everyone', options: { list: [{ title: 'Everyone', value: 'everyone' }, { title: 'Group leaders', value: 'leaders' }] }, validation: rule => rule.required() }),
     defineField({ name: 'scripture', type: 'string' }),
     defineField({ name: 'series', type: 'string' }),

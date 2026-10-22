@@ -6,13 +6,13 @@ interface Props { resource: Resource; }
 const { resource } = Astro.props;
 ---
 <article class="resource-card">
-  <a href={`/resources/${resource.slug}/`} class="card-link">
+  <a href={resource.fileUrl || `/resources/${resource.slug}/`} class="card-link" target={resource.fileUrl ? '_blank' : undefined} rel={resource.fileUrl ? 'noopener noreferrer' : undefined}>
     <ResourceCover resource={resource} />
     <div class="card-copy">
       <div class="eyebrow">{resource.kind}</div>
       <h3>{resource.title}</h3>
       <p>{resource.summary}</p>
-      <span class="card-action">{resource.kind === 'External resource' ? 'Explore resource' : 'Read resource'} <Arrow /></span>
+      <span class="card-action">{resource.fileUrl ? 'Open PDF' : resource.kind === 'External resource' ? 'Explore resource' : 'Read resource'} <Arrow />{resource.fileUrl && <span class="sr-only"> (opens in a new tab)</span>}</span>
     </div>
   </a>
 </article>
