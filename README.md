@@ -2,6 +2,8 @@
 
 Astro static resource library with a standalone Sanity Studio and Vercel configuration. The site follows Golden City Church's Roboto, grayscale, and restrained gold visual language. It lives in a separate public Git repository inside the ministry workspace.
 
+Design preview: [Vercel](https://gcc-groups-resources-1vmherbm4-paul-canaan.vercel.app) (Vercel sign-in required). This is a Preview deployment, not the church’s production resources site.
+
 ## Local preview
 
 Use Node 22.23.4 or newer (Node 24 LTS recommended).
@@ -31,7 +33,7 @@ Only published resources with `publicDistribution=true` enter a web build. CMS q
 
 ## Vercel setup
 
-`vercel.json` selects Astro, `npm run build`, and `dist`. Static output needs no Vercel server adapter. The hosting team is **PaulCanaan** (`paul-canaan`, Hobby), selected by Paul as the shared home for his web projects. The GCC Resources project remains separate from his other deployments. Use explicit team and project scope when linking or deploying.
+`vercel.json` selects Astro, `npm run build`, and `dist`. Static output needs no Vercel server adapter. The hosting team is **PaulCanaan** (`paul-canaan`, Hobby), selected by Paul as the shared home for his web projects. The GCC Resources project remains separate from his other deployments. Use explicit team and project scope when linking or deploying. The linked project is `gcc-groups-resources` (`prj_Dmc1G3spqjZuE5co8WtVIguL6nYG`).
 
 Configure these environment variables for the intended deployment environments:
 
@@ -43,7 +45,9 @@ Configure these environment variables for the intended deployment environments:
 | `SANITY_READ_TOKEN` | Private-dataset read token, only if required |
 | `SITE_URL` | Confirmed resource domain origin |
 
-Keep credentials and Deploy Hook URLs in provider settings or ignored local environment files. Never commit them. Review the deployment before adding a production domain or main-site redirect.
+Vercel [classifies a new project’s first deployment as production](https://vercel.com/docs/cli/deploy#prod), even with the preview flag. The first attempt here failed with the sample-content guard enabled and no production release was made. Keeping that failed attempt recorded allowed the next explicit preview attempt to be classified as Preview. Do not weaken that guard to bootstrap a design preview.
+
+Keep credentials and Deploy Hook URLs in provider settings or ignored local environment files. Never commit them. Review the deployment before adding a production domain or main-site redirect. Source is pushed to GitHub; automatic Git deployment is not connected yet.
 
 For content updates, configure a Sanity webhook to a Vercel Deploy Hook. Trigger on published document creation, update, unpublishing, and deletion. Draft edits should not trigger production builds. Test both adding and removing a resource: an older static page remains until a successful rebuild replaces it. A failed build leaves the previous successful deployment live and requires follow-up.
 
