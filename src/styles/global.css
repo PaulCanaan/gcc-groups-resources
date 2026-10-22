@@ -211,7 +211,7 @@ a:hover {
   min-width:0;
 }
 .hero-illustration {
-  width:240px;
+  width:200px;
   height:auto;
   flex-shrink:0;
 }
@@ -873,7 +873,7 @@ a:hover {
 
 @media(min-width:721px) and (max-width:1000px) {
   .hero-illustration {
-    width:180px;
+    width:160px;
   }
 }
 @media(max-width:360px) {
