@@ -13,11 +13,11 @@ The landing page opens with three collapsed categories. Visitors unfold a catego
 
 | Category | Published resources |
 |---|---|
-| City Groups Resources | Weekly Recaps: Love (October 4), Joy (October 11), Peace (October 18, 2026) |
+| City Groups Resources | Weekly Recaps: Love (October 4), Joy (October 11), Peace (October 18), Patience (October 25, 2026) |
 | Collectives Resources | Galatians Sessions 1–2, with separate Men’s and Women’s Collective editions |
 | Other Resources | GCC Group Leader Agreement, public edition; future approved Group Leader Collaboration and training resources belong here |
 
-All eight resources have a full reading page and an approved printable PDF. The Agreement public edition excludes private pastoral phone numbers; completed acknowledgements remain private. Design examples do not appear in production. Legacy `cojourner` category values normalize to Other Resources, rather than creating a fourth category.
+All nine resources have a full reading page and an approved printable PDF. The Agreement public edition excludes private pastoral phone numbers; completed acknowledgements remain private. Design examples do not appear in production. Legacy `cojourner` category values normalize to Other Resources, rather than creating a fourth category.
 
 Each card offers two actions:
 
@@ -79,10 +79,11 @@ The preview command serves the built `dist/` directory. Rebuild after making sou
 | `sanity/resource.ts` | Resource editing schema |
 | `public/` | Church graphics, Bible illustration, local Roboto font and license |
 | `tests/resources.test.ts` | Publication boundaries, safe content, routes, and download URLs |
+| `scripts/ai-gateway-stream.mjs` | Standalone Vercel AI Gateway streaming smoke test, not part of the site build; reads `AI_GATEWAY_API_KEY` from the shell, defaults to `openai/gpt-oss-20b` |
 
 ## Sanity and publication
 
-The existing Sanity project is **`1consdwv`**, dataset **`production`**. A standalone Studio is included; run `npm run studio` at `http://localhost:3333`, or `npm run studio:build` to build it. A hosted editorial Studio is not part of the deployed Astro library. The Sanity plugin was unavailable during setup, so this build uses the official client and Studio.
+The existing Sanity project is **`1consdwv`**, dataset **`production`**. A Studio is included here; run `npm run studio` at `http://localhost:3333`, or `npm run studio:build` to build it. A separate standalone Studio lives beside this checkout at `06 Resources/studio-gcc-groups-resources` (outside this repository) with a copy of the `resource` schema; its schema is deployed to `1consdwv/production`. Keep its category list in step with `src/lib/resource.ts`. A hosted editorial Studio is not part of the deployed Astro library. The Sanity plugin was unavailable during setup, so this build uses the official client and Studio.
 
 | Environment variable | Configuration |
 |---|---|
@@ -103,6 +104,8 @@ For each new or updated resource:
 3. Set the title, stable slug, summary, category, date, resource type, audience, and optional Scripture/series/session fields. Attach the approved PDF and confirm public-distribution clearance, then publish.
 4. Trigger a deliberate Vercel production rebuild. CMS-only changes do not currently deploy automatically.
 5. Check the public card, full text, PDF preview, page navigation, and explicit download. A Markdown edit does not regenerate the PDF; review both editions together.
+
+Since October 25, 2026, Claude publishes resources Paul has reviewed through the Sanity and Vercel connectors (Sanity entry and publish, Vercel production redeploy), following these same steps; the agent shells cannot reach Sanity or Vercel directly. Uploading the PDF asset still needs a one-time upload URL run from Paul's Mac. Each release is recorded in the ignored `.sanity/publication-<date>.json`. The ministry-side procedure lives in the Groups OS workflow *Weekly Recap Production*, step 5.
 
 Unpublishing or deleting in Sanity requires a successful rebuild to remove the old HTML and static PDF routes. Previously public CDN attachments are not revoked by removing a card. A failed build leaves the previous successful deployment live and needs follow-up.
 
@@ -138,6 +141,8 @@ Defer member accounts, private resource delivery, advanced search/filtering, tra
 ## Verification and recovery
 
 The latest application release passed four automated tests, Astro/TypeScript checks across twenty-one files, and the static build. All eight generated PDFs matched their approved original hashes. Browser verification covered actual PDF rendering on library and reading pages, multi-page navigation, Escape and focus return, Tab wrapping, and 320/375px phone layouts without horizontal overflow. These are release evidence from October 22, 2026, not a substitute for verifying later changes.
+
+On October 25, the Patience recap was added through Sanity and a production redeploy (`dpl_5tHEh9Xp3PkEaMuLdohffKiLyFty`). A headless-browser check of the live site at 1280 and 375px passed: library card, reading page sections, back link, in-page PDF rendering, Escape close, no page errors or horizontal overflow; the download is an attachment and both PDF copies match the approved file. Application source was unchanged.
 
 On October 24, domain verification covered HTTPS and the new canonical origin, apex/`www` and trailing-slash redirects, keyboard activation of the published Groups entrance, desktop/375px layouts without overflow, all eight reading pages and PDF hashes, and actual in-page PDF rendering. Application source and CMS content were unchanged.
 
