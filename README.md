@@ -125,6 +125,8 @@ The Groups overview includes a native **Group Resources** entrance linking to `/
 
 ## Future development plan
 
+The full roadmap, vision, and publishing improvements are in [docs/ROADMAP.md](docs/ROADMAP.md). Plain-language guides: [Managing content in Sanity](docs/guides/sanity-content.md) · [Deploying with Vercel](docs/guides/vercel-deploy.md).
+
 The following work is pending or conditional, not shipped functionality or approval of new ministry content. No new delivery deadline is set.
 
 | Priority | Work | Completion evidence |
