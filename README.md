@@ -15,9 +15,9 @@ The landing page opens with three collapsed categories. Visitors unfold a catego
 |---|---|
 | City Groups Resources | Weekly Recaps: Love (October 4), Joy (October 11), Peace (October 18), Patience (October 25, 2026) |
 | Collectives Resources | Galatians Sessions 1–2, with separate Men’s and Women’s Collective editions |
-| Other Resources | GCC Group Leader Agreement, public edition; future approved Group Leader Collaboration and training resources belong here |
+| Other Resources | GCC Group Leader Agreement, public edition; City Group Guide; Collective Leader Guide; future approved Group Leader Collaboration resources belong here |
 
-All nine resources have a full reading page and an approved printable PDF. The Agreement public edition excludes private pastoral phone numbers; completed acknowledgements remain private. Design examples do not appear in production. Legacy `cojourner` category values normalize to Other Resources, rather than creating a fourth category.
+All eleven resources have a full reading page and an approved printable PDF. The Agreement public edition excludes private pastoral phone numbers; completed acknowledgements remain private. Design examples do not appear in production. Legacy `cojourner` category values normalize to Other Resources, rather than creating a fourth category.
 
 Each card offers two actions:
 
@@ -105,7 +105,7 @@ For each new or updated resource:
 4. Trigger a deliberate Vercel production rebuild. CMS-only changes do not currently deploy automatically.
 5. Check the public card, full text, PDF preview, page navigation, and explicit download. A Markdown edit does not regenerate the PDF; review both editions together.
 
-Since October 25, 2026, Claude publishes resources Paul has reviewed through the Sanity and Vercel connectors (Sanity entry and publish, Vercel production redeploy), following these same steps; the agent shells cannot reach Sanity or Vercel directly. Uploading the PDF asset still needs a one-time upload URL run from Paul's Mac. Each release is recorded in the ignored `.sanity/publication-<date>.json`. The ministry-side procedure lives in the Groups OS workflow *Weekly Recap Production*, step 5.
+Since October 25, 2026, Claude publishes resources Paul has reviewed through the Sanity and Vercel connectors (Sanity entry and publish, Vercel production redeploy), following these same steps; the agent shells cannot reach Sanity or Vercel directly. Since October 30, 2026, PDF asset uploads also run through Muse's custom Sanity connector; the production rebuild in step 4 still runs from Paul's checkout or a merge to `main`, because the Vercel connector cannot trigger one. Each release is recorded in the ignored `.sanity/publication-<date>.json`. The ministry-side procedure lives in the Groups OS workflow *Weekly Recap Production*, step 5.
 
 Unpublishing or deleting in Sanity requires a successful rebuild to remove the old HTML and static PDF routes. Previously public CDN attachments are not revoked by removing a card. A failed build leaves the previous successful deployment live and needs follow-up.
 
