@@ -29,7 +29,9 @@ const category = categories.find(c => c.id === resource.category)!;
           {!resource.fileUrl && <button type="button" class="print-button" data-print hidden>Print this guide <span aria-hidden="true">↗</span></button>}
         </div>
         <div class="article-body" set:html={renderResourceBody(resource.body)} />
-        <div class="article-close"><p class="eyebrow">Take it with you</p><p>Read slowly. Make room for conversation.<br />Ask God to shape the way you live.</p></div>
+        {(resource.category === 'city-groups' || resource.category === 'collectives') && (
+          <div class="article-close"><p class="eyebrow">Take it with you</p><p>Read slowly. Make room for conversation.<br />Ask God to shape the way you live.</p></div>
+        )}
       </article>
       <aside class="resource-aside" aria-label="Resource collection"><ResourceCover resource={resource} featured /><p>A resource from<br /><strong>Golden City Groups</strong></p><a class="text-link" href="/">Browse all resources <Arrow /></a></aside>
     </div>
