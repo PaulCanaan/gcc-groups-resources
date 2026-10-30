@@ -17,7 +17,7 @@ The landing page opens with three collapsed categories. Visitors unfold a catego
 | Collectives Resources | Galatians Sessions 1–2, with separate Men’s and Women’s Collective editions |
 | Other Resources | GCC Group Leader Agreement, public edition; City Group Guide; Collective Leader Guide; future approved Group Leader Collaboration resources belong here |
 
-All eleven resources have a full reading page and an approved printable PDF. The Agreement public edition excludes private pastoral phone numbers; completed acknowledgements remain private. Design examples do not appear in production. Legacy `cojourner` category values normalize to Other Resources, rather than creating a fourth category.
+All eleven resources have a full reading page and an approved printable PDF. The two leader guides were revised on October 30, 2026 with a new print layout (cover line and page furniture; web text unchanged) and republished the same day. The Agreement public edition excludes private pastoral phone numbers; completed acknowledgements remain private. Design examples do not appear in production. Legacy `cojourner` category values normalize to Other Resources, rather than creating a fourth category.
 
 Each card offers two actions:
 
