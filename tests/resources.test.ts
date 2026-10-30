@@ -29,6 +29,14 @@ test('full resources preserve Markdown structure without allowing executable HTM
   assert.doesNotMatch(html, /<script>|href="javascript:/);
 });
 
+test('resource bodies render Markdown tables as HTML tables', () => {
+  const html = renderResourceBody('| If… | First step | Agreement |\n|---|---|---|\n| Someone speaks of suicide or self-harm | Stay with them; share 988 | Policy 3 |');
+  assert.match(html, /<table>/);
+  assert.match(html, /<th>Agreement<\/th>/);
+  assert.match(html, /<td>Policy 3<\/td>/);
+  assert.doesNotMatch(html, /\|---\|/);
+});
+
 test('printable PDF links request a named download from the Sanity asset CDN', () => {
   const url = new URL(printablePdfUrl({slug: 'weekly-recap-2026-10-04-love', fileUrl: 'https://cdn.sanity.io/files/project/production/asset.pdf'})!);
   assert.equal(url.searchParams.get('dl'), 'weekly-recap-2026-10-04-love.pdf');
