@@ -604,6 +604,22 @@ a:hover {
 .article-body blockquote>*+* {
   margin-top:16px;
 }
+.article-body table {
+  border-collapse:collapse;
+  width:100%;
+  font-size:15px;
+  line-height:1.6;
+}
+.article-body th,.article-body td {
+  border:1px solid var(--line);
+  padding:10px 12px;
+  text-align:left;
+  vertical-align:top;
+}
+.article-body th {
+  background:var(--warm);
+  font-weight:600;
+}
 .article-actions {
   display:flex;
   flex-wrap:wrap;
@@ -787,6 +803,12 @@ a:hover {
   .article-body {
     font-size:16px;
     line-height:1.85;
+  }
+  .article-body table {
+    font-size:14px;
+  }
+  .article-body th,.article-body td {
+    padding:8px 9px;
   }
   .resource-aside {
     padding-top:25px;
