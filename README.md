@@ -100,7 +100,7 @@ Only the published perspective and documents with `publicDistribution=true` ente
 For each new or updated resource:
 
 1. Review the source, audience, public edition, and any required pastoral or copyright clearance. Leadership training may be public, including Belonging–Beholding–Becoming; its availability does not change the Groups overview’s messaging.
-2. Prepare matching web and PDF editions. Paste the complete approved Markdown into **Full resource (Markdown)**, starting section headings at `##`. Omit repeated titles, YAML frontmatter, print-layout comments, internal references, and private notes. Preserve Scripture credits.
+2. Prepare matching web and PDF editions. Paste the complete approved Markdown into **Full resource (Markdown)**, starting section headings at `##`. Omit repeated titles, YAML frontmatter, print-layout comments, internal references, and private notes. Omit Scripture credits from the web edition when the credit already appears in the PDF edition (set November 14, 2026: the CSB credit stays in the printed Collective handouts and their PDFs, and does not appear again on the reading page).
 3. Set the title, stable slug, summary, category, date, resource type, audience, and optional Scripture/series/session fields. Attach the approved PDF and confirm public-distribution clearance, then publish.
 4. Trigger a deliberate Vercel production rebuild. CMS-only changes do not currently deploy automatically.
 5. Check the public card, full text, PDF preview, page navigation, and explicit download. A Markdown edit does not regenerate the PDF; review both editions together.
